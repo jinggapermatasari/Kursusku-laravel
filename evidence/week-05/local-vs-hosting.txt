@@ -1,0 +1,37 @@
+LOCAL VS HOSTING
+
+1. LOCAL
+
+Website dijalankan pada komputer sendiri menggunakan localhost.
+
+Alamat:
+http://localhost/kursusku-prototype/
+
+Kelebihan:
+- Cocok untuk membuat dan menguji website.
+- Perubahan kode dapat langsung diuji.
+- Tidak perlu mengunggah website ke server.
+
+Kekurangan:
+- Website hanya dapat diakses pada lingkungan local.
+- Belum dapat diakses pengguna melalui internet.
+
+
+2. HOSTING
+
+Website dijalankan pada server hosting sehingga dapat diakses melalui internet.
+
+Kelebihan:
+- Website dapat diakses melalui internet.
+- Website dapat diakses dari perangkat lain.
+
+Kekurangan:
+- Membutuhkan layanan hosting.
+- Membutuhkan koneksi internet.
+- Perlu konfigurasi server.
+
+
+KESIMPULAN
+
+Local digunakan untuk proses pembuatan dan pengujian website.
+Hosting digunakan untuk membuat website dapat diakses melalui internet.

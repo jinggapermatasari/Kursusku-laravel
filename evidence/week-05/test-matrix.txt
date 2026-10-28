@@ -1,0 +1,12 @@
+TEST MATRIX - KURSUSKU
+
+| No | Fitur yang Diuji | Input/Tindakan | Hasil yang Diharapkan | Status |
+|----|------------------|----------------|------------------------|--------|
+| 1 | Halaman utama | Membuka index.php | Katalog kursus tampil | Berhasil |
+| 2 | Navigasi | Klik Daftar Kursus | Membuka registration.php | Berhasil |
+| 3 | Form pendaftaran | Mengisi data lengkap | Data dapat dikirim | Berhasil |
+| 4 | Validasi form | Mengosongkan field wajib | Browser menampilkan validasi | Berhasil |
+| 5 | POST | Mengirim form dengan POST | Data tampil di process-registration.php | Berhasil |
+| 6 | GET | Mengubah POST menjadi GET dan mengirim form | Data terlihat pada URL | Berhasil |
+| 7 | Responsive | Membuka form dalam tampilan mobile | Form menyesuaikan ukuran layar | Berhasil |
+| 8 | Perhitungan kursus | Membuka katalog | Biaya, status, dan sisa kursi tampil | Berhasil |
