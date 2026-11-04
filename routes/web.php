@@ -3,13 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrollmentController;
 
-/*
-|--------------------------------------------------------------------------
-| Halaman Beranda
-|--------------------------------------------------------------------------
-*/
-
 Route::get('/', function () {
+
     $featured = [
         [
             'code' => 'WEB-01',
@@ -42,14 +37,9 @@ Route::get('/', function () {
         'tagline' => 'Tingkatkan kemampuan digitalmu',
         'featured' => $featured,
     ]);
+
 })->name('home');
 
-
-/*
-|--------------------------------------------------------------------------
-| Formulir Pendaftaran
-|--------------------------------------------------------------------------
-*/
 
 Route::get('/pendaftaran', [
     EnrollmentController::class,
@@ -57,23 +47,11 @@ Route::get('/pendaftaran', [
 ])->name('enrollments.create');
 
 
-/*
-|--------------------------------------------------------------------------
-| Preview Pendaftaran
-|--------------------------------------------------------------------------
-*/
-
 Route::post('/pendaftaran/preview', [
     EnrollmentController::class,
     'preview',
 ])->name('enrollments.preview');
 
-
-/*
-|--------------------------------------------------------------------------
-| Proses Pengiriman Pendaftaran
-|--------------------------------------------------------------------------
-*/
 
 Route::post('/pendaftaran', [
     EnrollmentController::class,
@@ -81,25 +59,10 @@ Route::post('/pendaftaran', [
 ])->name('enrollments.store');
 
 
-/*
-|--------------------------------------------------------------------------
-| Cek Ketersediaan Kursi
-|--------------------------------------------------------------------------
-*/
-
 Route::get('/courses/{course}/availability', [
     EnrollmentController::class,
     'availability',
 ])->whereNumber('course')->name('courses.availability');
 
-
-/*
-|--------------------------------------------------------------------------
-| Halaman Mulai Belajar
-|--------------------------------------------------------------------------
-|
-| Pastikan file resources/views/belajar.blade.php tersedia.
-|
-*/
 
 Route::view('/belajar', 'belajar')->name('belajar');

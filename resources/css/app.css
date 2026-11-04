@@ -1,5 +1,8 @@
-
 @import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* =========================================
+   1. WARNA UTAMA KURSUSKU
+========================================= */
 
 :root {
     --wine: #800020;
@@ -10,8 +13,13 @@
     --ink: #38232a;
     --muted: #806e75;
     --line: #ead5dc;
+    --white: #ffffff;
     --shadow: 0 18px 50px rgba(89, 0, 24, 0.09);
 }
+
+/* =========================================
+   2. RESET DAN DASAR WEBSITE
+========================================= */
 
 * {
     box-sizing: border-box;
@@ -19,6 +27,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -38,7 +47,10 @@ body {
     padding-bottom: 48px;
 }
 
-/* Navbar */
+/* =========================================
+   3. NAVBAR
+========================================= */
+
 .kursusku-navbar {
     position: sticky;
     top: 0;
@@ -52,19 +64,19 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #fff;
+    color: var(--white);
     font-size: 1.35rem;
     font-weight: 800;
 }
 
 .brand-mark {
     display: inline-flex;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
-    background: #fff;
+    background: var(--white);
     color: var(--wine);
     font-weight: 900;
 }
@@ -78,19 +90,45 @@ body {
 }
 
 .kursusku-navbar .nav-link {
+    position: relative;
     padding: 10px 14px !important;
     color: #f9eaf0 !important;
     font-weight: 600;
+    transition: 0.25s ease;
 }
 
 .kursusku-navbar .nav-link:hover,
 .kursusku-navbar .nav-link.active {
-    color: #fff !important;
+    color: var(--white) !important;
+}
+
+.kursusku-navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 14px;
+    width: 0;
+    height: 2px;
+    background: var(--white);
+    transition: width 0.25s ease;
+}
+
+.kursusku-navbar .nav-link:hover::after,
+.kursusku-navbar .nav-link.active::after {
+    width: calc(100% - 28px);
 }
 
 .kursusku-navbar .navbar-toggler {
     border-color: rgba(255, 255, 255, 0.5);
 }
+
+.kursusku-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 0.15rem rgba(255, 255, 255, 0.25);
+}
+
+/* =========================================
+   4. TOMBOL
+========================================= */
 
 .btn-premium,
 .btn-primary-custom {
@@ -102,21 +140,21 @@ body {
     border: 0;
     border-radius: 999px;
     background: var(--wine);
-    color: #fff !important;
+    color: var(--white) !important;
     font-weight: 700;
     text-decoration: none;
-    transition: 0.2s ease;
+    transition: all 0.25s ease;
 }
 
 .kursusku-navbar .btn-premium {
-    background: #fff;
+    background: var(--white);
     color: var(--wine) !important;
 }
 
 .btn-premium:hover,
 .btn-primary-custom:hover {
     background: var(--wine-dark);
-    color: #fff !important;
+    color: var(--white) !important;
     transform: translateY(-2px);
 }
 
@@ -125,13 +163,21 @@ body {
     color: var(--wine) !important;
 }
 
-/* Hero */
+/* =========================================
+   5. HERO SECTION
+========================================= */
+
 .hero {
     position: relative;
     overflow: hidden;
     padding: 70px 0;
-    background: linear-gradient(135deg, var(--wine-dark), var(--wine), #a83d59);
-    color: #fff;
+    background: linear-gradient(
+        135deg,
+        var(--wine-dark),
+        var(--wine),
+        #a83d59
+    );
+    color: var(--white);
 }
 
 .hero-content {
@@ -184,15 +230,24 @@ body {
 .hero .btn {
     padding: 13px 22px;
     border-radius: 999px;
-    background: #fff;
+    background: var(--white);
     color: var(--wine);
     font-weight: 700;
+}
+
+.hero .btn:hover {
+    transform: translateY(-3px);
 }
 
 .hero .btn-outline {
     border: 1px solid rgba(255, 255, 255, 0.65);
     background: transparent;
-    color: #fff;
+    color: var(--white);
+}
+
+.hero .btn-outline:hover {
+    background: var(--white);
+    color: var(--wine);
 }
 
 .hero-stats {
@@ -216,6 +271,10 @@ body {
     color: #f5dce5;
     font-size: 0.82rem;
 }
+
+/* =========================================
+   6. HERO CARD
+========================================= */
 
 .hero-card {
     padding: 28px;
@@ -250,7 +309,7 @@ body {
     height: 42px;
     place-items: center;
     border-radius: 14px;
-    background: #fff;
+    background: var(--white);
     color: var(--wine);
     font-size: 1.3rem;
 }
@@ -266,7 +325,7 @@ body {
     padding: 20px;
     place-items: center;
     border-radius: 20px;
-    background: #fff;
+    background: var(--white);
 }
 
 .screen {
@@ -288,7 +347,7 @@ body {
     height: 8px;
     margin: 10px 0;
     border-radius: 99px;
-    background: var(--rose-soft, #f3dce5);
+    background: #f3dce5;
 }
 
 .screen-line.long {
@@ -320,10 +379,13 @@ body {
     width: 65%;
     height: 100%;
     border-radius: inherit;
-    background: #fff;
+    background: var(--white);
 }
 
-/* Section and course cards */
+/* =========================================
+   7. SECTION UMUM
+========================================= */
+
 .section {
     padding: 68px 0;
 }
@@ -348,6 +410,10 @@ body {
     line-height: 1.8;
 }
 
+/* =========================================
+   8. KARTU KURSUS
+========================================= */
+
 .course-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -360,7 +426,7 @@ body {
     padding: 26px;
     border: 1px solid var(--line);
     border-radius: 22px;
-    background: #fff;
+    background: var(--white);
     box-shadow: var(--shadow);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -444,9 +510,17 @@ body {
     color: var(--wine);
     font-weight: 800;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
-/* About */
+.course-link:hover {
+    color: var(--rose);
+}
+
+/* =========================================
+   9. TENTANG KURSUSKU
+========================================= */
+
 .about {
     padding: 65px 0;
     background: var(--soft);
@@ -459,7 +533,56 @@ body {
     gap: 40px;
 }
 
-/* Forms */
+.about-content h2 {
+    max-width: 520px;
+}
+
+/* =========================================
+   10. KEUNGGULAN KURSUSKU
+========================================= */
+
+#keunggulan {
+    padding: 85px 0;
+    background: var(--cream);
+}
+
+#keunggulan .section-heading {
+    margin-bottom: 45px;
+}
+
+#keunggulan .course-card {
+    overflow: hidden;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+}
+
+#keunggulan .course-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--rose);
+    box-shadow: 0 22px 45px rgba(89, 0, 24, 0.14);
+}
+
+#keunggulan .course-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    font-size: 1.4rem;
+}
+
+#keunggulan .course-card h3 {
+    margin-bottom: 13px;
+    color: var(--wine-dark);
+}
+
+#keunggulan .course-card p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+/* =========================================
+   11. FORMULIR PENDAFTARAN
+========================================= */
+
 .card {
     border: 1px solid var(--line);
     border-radius: 22px;
@@ -495,11 +618,14 @@ body {
     border-radius: 12px;
 }
 
-/* Footer */
+/* =========================================
+   12. FOOTER
+========================================= */
+
 .site-footer {
     padding: 24px 0;
     background: var(--wine-dark);
-    color: #fff;
+    color: var(--white);
     text-align: center;
 }
 
@@ -508,8 +634,23 @@ body {
     color: #f5dce5;
 }
 
-/* Responsive */
+/* =========================================
+   13. SCROLL DAN POSISI NAVIGASI
+========================================= */
+
+#beranda,
+#kursus,
+#tentang,
+#keunggulan {
+    scroll-margin-top: 100px;
+}
+
+/* =========================================
+   14. RESPONSIVE TABLET
+========================================= */
+
 @media (max-width: 991px) {
+
     .hero-content {
         grid-template-columns: 1fr;
     }
@@ -521,15 +662,49 @@ body {
     .course-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .kursusku-navbar .navbar-collapse {
+        padding-top: 15px;
+    }
+
+    .kursusku-navbar .navbar-nav {
+        align-items: stretch !important;
+    }
+
+    .kursusku-navbar .nav-link {
+        padding: 12px 10px !important;
+    }
+
+    .kursusku-navbar .nav-link::after {
+        display: none;
+    }
+
+    .kursusku-navbar .btn-premium {
+        width: 100%;
+        margin-top: 8px;
+    }
 }
 
+/* =========================================
+   15. RESPONSIVE HANDPHONE
+========================================= */
+
 @media (max-width: 575px) {
+
     .hero {
         padding: 48px 0;
     }
 
     .hero-stats {
         gap: 18px;
+    }
+
+    .hero h1 {
+        font-size: 2.3rem;
+    }
+
+    .hero-card {
+        padding: 22px;
     }
 
     .course-grid,
@@ -541,11 +716,23 @@ body {
         padding: 48px 0;
     }
 
+    #keunggulan {
+        padding: 55px 0;
+    }
+
     .card-body {
         padding: 20px;
     }
 
     .brand-caption {
         display: none;
+    }
+
+    #tentang .about-content {
+        gap: 20px;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
     }
 }

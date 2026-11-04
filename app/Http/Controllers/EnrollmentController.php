@@ -11,27 +11,34 @@ use Illuminate\Validation\ValidationException;
 class EnrollmentController extends Controller
 {
     /**
-     * Menampilkan halaman pendaftaran kursus.
+     * Menampilkan formulir pendaftaran.
      */
     public function create()
     {
-        $courses = Course::all();
+        $courses = Course::orderBy('id')->get();
 
-        return view('pendaftaran', compact('courses'));
+        $availability = $this->getAvailability();
+
+        return view('enrollments.create', compact(
+            'courses',
+            'availability'
+        ));
     }
 
     /**
-     * Memproses pemeriksaan data pendaftaran.
+     * Memeriksa data sebelum pendaftaran dikirim.
      */
     public function preview(Request $request)
     {
         $validated = $request->validate([
-            'course_id' => 'required|integer|exists:courses,id',
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
             'email' => 'required|email|max:255',
+            'course_id' => 'required|integer|exists:courses,id',
         ]);
 
-        $course = Course::findOrFail($validated['course_id']);
+        $course = Course::findOrFail(
+            $validated['course_id']
+        );
 
         $enrolled = Enrollment::where(
             'course_id',
@@ -44,28 +51,28 @@ class EnrollmentController extends Controller
             ]);
         }
 
-        return view('pendaftaran', [
-            'courses' => Course::all(),
-            'selectedCourse' => $course,
+        return view('enrollments.preview', [
+            'course' => $course,
             'formData' => $validated,
         ]);
     }
 
     /**
-     * Menyimpan pendaftaran kursus.
+     * Menyimpan pendaftaran ke database.
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'course_id' => 'required|integer|exists:courses,id',
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|min:3|max:255',
             'email' => 'required|email|max:255',
+            'course_id' => 'required|integer|exists:courses,id',
         ]);
 
         DB::transaction(function () use ($validated) {
-            $course = Course::whereKey($validated['course_id'])
-                ->lockForUpdate()
-                ->firstOrFail();
+
+            $course = Course::whereKey(
+                $validated['course_id']
+            )->lockForUpdate()->firstOrFail();
 
             $enrolled = Enrollment::where(
                 'course_id',
@@ -74,7 +81,8 @@ class EnrollmentController extends Controller
 
             if ($enrolled >= $course->capacity) {
                 throw ValidationException::withMessages([
-                    'course_id' => 'Maaf, kursus ini sudah penuh. Silakan pilih kursus lain.',
+                    'course_id' =>
+                        'Kursus sudah penuh. Silakan pilih kursus lain.',
                 ]);
             }
 
@@ -87,28 +95,72 @@ class EnrollmentController extends Controller
 
         return redirect()
             ->route('enrollments.create')
-            ->with('success', 'Pendaftaran kursus berhasil!');
+            ->with(
+                'success',
+                'Pendaftaran kursus berhasil disimpan!'
+            );
     }
 
     /**
-     * Mengecek sisa kursi kursus.
+     * Menghitung ketersediaan kursi setiap kursus.
      */
-    public function availability($id)
+    private function getAvailability()
     {
-        $course = Course::findOrFail($id);
+        $courses = Course::orderBy('id')->get();
+
+        $enrollmentCounts = Enrollment::selectRaw(
+            'course_id, COUNT(*) as total'
+        )
+            ->groupBy('course_id')
+            ->pluck('total', 'course_id');
+
+        return $courses->mapWithKeys(function ($course) use (
+            $enrollmentCounts
+        ) {
+            $enrolled = (int) (
+                $enrollmentCounts[$course->id] ?? 0
+            );
+
+            $capacity = (int) $course->capacity;
+
+            return [
+                $course->id => [
+                    'name' => $course->name,
+                    'capacity' => $capacity,
+                    'enrolled' => $enrolled,
+                    'remaining' => max(
+                        0,
+                        $capacity - $enrolled
+                    ),
+                ],
+            ];
+        });
+    }
+
+    /**
+     * Mengecek ketersediaan kursi melalui Ajax.
+     */
+    public function availability($course)
+    {
+        $course = Course::findOrFail($course);
 
         $enrolled = Enrollment::where(
             'course_id',
             $course->id
         )->count();
 
+        $capacity = (int) $course->capacity;
+
         $remaining = max(
             0,
-            $course->capacity - $enrolled
+            $capacity - $enrolled
         );
 
         return response()->json([
+            'id' => $course->id,
             'course' => $course->name,
+            'capacity' => $capacity,
+            'enrolled' => $enrolled,
             'remaining' => $remaining,
             'is_full' => $remaining === 0,
         ]);
