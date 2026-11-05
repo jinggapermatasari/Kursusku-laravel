@@ -1,36 +1,28 @@
-# TEST CASES - WEEK 10
-## Project KursusKu
+# TEST CASES – KURSUSKU
+## Praktikum Pertemuan 10
 
-### A. Pengujian Database
+### A. Tabel Pengujian
 
-| No | Pengujian | Hasil yang Diharapkan | Status |
-|---|---|---|---|
-| 1 | Memeriksa database | Database KursusKu tersedia | Berhasil |
-| 2 | Memeriksa tabel courses | Struktur tabel sesuai kebutuhan | Berhasil |
-| 3 | Memeriksa data kursus | Terdapat 8 data kursus | Berhasil |
+| No. | Fitur yang Diuji | Skenario Pengujian | Hasil yang Diharapkan | Hasil Aktual | Status |
+|---|---|---|---|---|---|
+| 1 | Menampilkan Data Kursus | Membuka halaman `/courses` | Sistem menampilkan daftar kursus yang tersimpan di database | Halaman berhasil menampilkan 8 data kursus | PASS |
+| 2 | Struktur Database | Memeriksa tabel `courses` melalui phpMyAdmin | Tabel memiliki kolom sesuai kebutuhan aplikasi | Struktur tabel courses berhasil diperiksa | PASS |
+| 3 | Menambahkan Data Kursus | Membuka `/courses/create` dan mengisi formulir dengan data valid | Sistem menyimpan data kursus ke database | Data kursus berhasil ditambahkan | PASS |
+| 4 | Validasi Kode Kursus | Mengosongkan kolom kode saat menambahkan kursus | Sistem menampilkan pesan bahwa kode wajib diisi | Sistem menampilkan pesan validasi | PASS |
+| 5 | Validasi Kode Duplikat | Memasukkan kode kursus yang sudah terdaftar | Sistem menolak kode kursus yang sudah digunakan | Sistem menampilkan pesan validasi kode duplikat | PASS |
+| 6 | Validasi Biaya Kursus | Memasukkan nilai biaya negatif | Sistem menolak nilai biaya yang tidak valid | Sistem menolak input biaya negatif | PASS |
+| 7 | Validasi Kuota Kursus | Mengosongkan kolom kuota | Sistem menampilkan pesan bahwa kuota wajib diisi | Sistem menampilkan pesan validasi | PASS |
+| 8 | Mengubah Data Kursus | Membuka halaman Edit dan mengubah informasi kursus | Sistem memperbarui data kursus di database | Data kursus berhasil diperbarui | PASS |
+| 9 | Menghapus Data Kursus | Menghapus data kursus melalui tombol Hapus | Sistem menghapus data kursus yang dipilih | Data kursus berhasil dihapus | PASS |
+| 10 | Menampilkan Status Kursus | Memeriksa status setiap kursus pada halaman daftar | Sistem menampilkan status Open, Draft, atau Closed sesuai data | Status kursus berhasil ditampilkan | PASS |
 
-### B. Pengujian CRUD Kursus
+### B. Keterangan
 
-| No | Pengujian | Hasil yang Diharapkan | Status |
-|---|---|---|---|
-| 1 | Menampilkan daftar kursus | 8 kursus tampil | Berhasil |
-| 2 | Membuka form tambah | Form tambah tampil | Berhasil |
-| 3 | Menambahkan kursus | Data berhasil disimpan | Berhasil |
-| 4 | Mengedit kursus | Data berhasil diperbarui | Berhasil |
-| 5 | Menghapus kursus percobaan | Data berhasil dihapus | Berhasil |
+- PASS: Pengujian berhasil dan hasil sesuai dengan yang diharapkan.
+- FAIL: Pengujian tidak berhasil atau hasil tidak sesuai dengan yang diharapkan.
 
-### C. Pengujian Validasi
+### C. Kesimpulan
 
-| No | Pengujian | Hasil yang Diharapkan | Status |
-|---|---|---|---|
-| 1 | Mengirim form kosong | Pesan validasi muncul | Berhasil |
-| 2 | Memasukkan kode kursus duplikat | Sistem menolak data | Belum diuji |
-| 3 | Memasukkan kuota tidak valid | Sistem menolak data | Belum diuji |
+Berdasarkan pengujian yang dilakukan pada aplikasi KursusKu, fitur pengelolaan data kursus telah berjalan sesuai dengan kebutuhan. Pengujian mencakup pemeriksaan struktur database, menampilkan data kursus, menambahkan data, validasi input, mengubah data, menghapus data, serta menampilkan status kursus.
 
-### D. Kesimpulan
-
-Pengujian dilakukan untuk memastikan fitur manajemen
-kursus pada aplikasi KursusKu berjalan sesuai kebutuhan.
-
-Fitur yang diuji meliputi database, tampilan daftar kursus,
-penambahan, pengeditan, penghapusan, dan validasi data.
+Hasil pengujian menunjukkan bahwa seluruh skenario berjalan sesuai dengan hasil yang diharapkan. Dengan demikian, implementasi fitur pengelolaan data kursus pada Praktikum Pertemuan 10 telah berhasil diselesaikan.
