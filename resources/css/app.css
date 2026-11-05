@@ -736,3 +736,68 @@ body {
         width: 100%;
     }
 }
+
+/* =========================================
+   8. TABEL MANAJEMEN KURSUS - UKURAN COMPACT
+========================================= */
+
+.course-page {
+    padding: 12px 0 !important;
+}
+
+.course-container {
+    max-width: 1050px;
+}
+
+.course-header {
+    padding: 13px 18px !important;
+    margin-bottom: 12px !important;
+}
+
+.course-header h2 {
+    font-size: 19px !important;
+    margin-bottom: 4px !important;
+}
+
+.course-header p {
+    font-size: 12px !important;
+}
+
+.course-card {
+    padding: 12px !important;
+}
+
+.course-table {
+    margin-top: 8px !important;
+}
+
+.course-table th {
+    padding: 6px 8px !important;
+    font-size: 10px !important;
+}
+
+.course-table td {
+    padding: 5px 8px !important;
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+}
+
+.course-table td small {
+    font-size: 9px !important;
+}
+
+.course-status {
+    padding: 3px 7px !important;
+    font-size: 9px !important;
+}
+
+.btn-add {
+    padding: 7px 11px !important;
+    font-size: 11px !important;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 4px 7px !important;
+    font-size: 10px !important;
+}
