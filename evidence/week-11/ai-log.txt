@@ -1,74 +1,175 @@
-# AI LOG – KURSUSKU
-## Meeting 10 – Pengembangan dan Pengujian Aplikasi
+==================================================
+                 AI LOG - KURSUSKU
+       MEETING 10 - PENGEMBANGAN DAN PENGUJIAN
+==================================================
 
-### 1. Informasi Proyek
+1. INFORMASI PROYEK
 
-| Keterangan | Detail |
-|---|---|
-| Nama Proyek | KursusKu |
-| Framework | Laravel |
-| Materi | CRUD Kursus dan Validasi Form |
-| Pertemuan | Meeting 10 |
-| Kegiatan | Implementasi, pengujian, dan dokumentasi |
+Nama Proyek     : KursusKu
+Framework       : Laravel
+Materi          : CRUD Kursus dan Validasi Form
+Pertemuan       : Meeting 10
+Kegiatan        : Implementasi, Pengujian, dan Dokumentasi
 
-### 2. Tujuan Penggunaan AI
 
-AI digunakan sebagai alat bantu dalam memahami konsep Laravel, memeriksa kode program, memperbaiki kesalahan, menyusun validasi, serta membantu proses pengujian aplikasi KursusKu.
+2. TUJUAN PENGGUNAAN AI
 
-### 3. Riwayat Penggunaan AI
+AI digunakan sebagai alat bantu dalam proses pengembangan
+aplikasi KursusKu.
 
-| No. | Aktivitas | Bantuan AI | Hasil |
-|---|---|---|---|
-| 1 | Pemeriksaan kode | Memeriksa struktur dan sintaks kode Laravel. | Kode lebih terarah dan mudah dipahami. |
-| 2 | Controller | Membantu meninjau CourseController. | Proses CRUD diperiksa. |
-| 3 | Form Request | Membantu memeriksa StoreCourseRequest dan UpdateCourseRequest. | Aturan validasi disesuaikan. |
-| 4 | Routing | Membantu memeriksa route resource courses. | Route CRUD dapat diperiksa melalui route:list. |
-| 5 | Validasi form | Menjelaskan aturan validasi setiap kolom kursus. | Validasi data disesuaikan dengan kebutuhan. |
-| 6 | Pengujian | Membantu membuat skenario pengujian validasi dan CRUD. | Tersusun 15 skenario pengujian. |
-| 7 | Dokumentasi | Membantu menyusun test matrix dan evidence. | Dokumentasi pengujian lebih terstruktur. |
+Tujuan penggunaan AI meliputi:
+- Memahami konsep dan struktur Laravel.
+- Memeriksa kode program.
+- Membantu memperbaiki kesalahan kode.
+- Menyusun aturan validasi form.
+- Membantu membuat skenario pengujian.
+- Menyusun dokumentasi pengujian aplikasi.
 
-### 4. Aturan Validasi
 
-| Field | Aturan Validasi |
-|---|---|
-| Code | Required, string, max:20, unique |
-| Name | Required, string, min:3, max:120 |
-| Description | Nullable, string, max:2000 |
-| Fee | Required, integer, min:0 |
-| Quota | Required, integer, min:1, max:500 |
-| Start Date | Required, date |
-| Status | Required, in:draft,open,closed |
+3. RIWAYAT PENGGUNAAN AI
 
-Pada proses update, kode kursus yang sedang digunakan oleh data itu sendiri tetap diperbolehkan karena validasi unique mengabaikan ID kursus tersebut.
+1. Pemeriksaan Kode
+   Bantuan  : Memeriksa struktur dan sintaks kode Laravel.
+   Hasil    : Kode lebih terarah dan mudah dipahami.
 
-### 5. Pengujian Aplikasi
+2. Controller
+   Bantuan  : Meninjau kode CourseController.
+   Hasil    : Proses CRUD diperiksa.
 
-| No. | Skenario Pengujian | Tujuan |
-|---|---|---|
-| 1 | Kode kursus duplikat | Memastikan kode tidak boleh sama. |
-| 2 | Nama kursus kosong | Memastikan nama wajib diisi. |
-| 3 | Nama kurang dari 3 karakter | Memastikan batas minimal nama. |
-| 4 | Deskripsi kosong | Memastikan deskripsi boleh kosong. |
-| 5 | Biaya negatif | Memastikan biaya minimal 0. |
-| 6 | Biaya bukan angka | Memastikan biaya harus integer. |
-| 7 | Kuota 0 | Memastikan kuota minimal 1. |
-| 8 | Kuota 501 | Memastikan kuota maksimal 500. |
-| 9 | Kuota 1 | Memastikan batas minimal diterima. |
-| 10 | Kuota 500 | Memastikan batas maksimal diterima. |
-| 11 | Tanggal mulai kosong | Memastikan tanggal wajib diisi. |
-| 12 | Status tidak valid | Memastikan status sesuai pilihan. |
-| 13 | Update kode duplikat | Memastikan kode tidak dapat menggunakan kode kursus lain. |
-| 14 | Update normal | Memastikan data dapat diperbarui. |
-| 15 | Delete kursus | Memastikan data dapat dihapus. |
+3. Form Request
+   Bantuan  : Memeriksa StoreCourseRequest dan
+              UpdateCourseRequest.
+   Hasil    : Aturan validasi disesuaikan.
 
-### 6. Evaluasi Penggunaan AI
+4. Routing
+   Bantuan  : Memeriksa route resource courses.
+   Hasil    : Route CRUD diperiksa melalui route:list.
 
-Penggunaan AI membantu proses memahami kode Laravel, memeriksa aturan validasi, dan menyusun pengujian aplikasi. Saran yang diberikan AI diperiksa kembali dan disesuaikan dengan struktur serta kebutuhan proyek KursusKu.
+5. Validasi Form
+   Bantuan  : Menjelaskan aturan validasi setiap kolom.
+   Hasil    : Validasi data disesuaikan dengan kebutuhan.
 
-### 7. Kesimpulan
+6. Pengujian
+   Bantuan  : Membantu menyusun skenario pengujian CRUD
+              dan validasi.
+   Hasil    : Tersusun 15 skenario pengujian.
 
-AI digunakan sebagai alat bantu selama proses pengembangan dan pengujian aplikasi KursusKu. Dengan bantuan AI, proses pemeriksaan kode, penerapan validasi, pengujian CRUD, dan penyusunan dokumentasi menjadi lebih terarah dan sistematis.
+7. Dokumentasi
+   Bantuan  : Membantu menyusun test matrix dan evidence.
+   Hasil    : Dokumentasi pengujian lebih terstruktur.
 
-Implementasi dan pengujian akhir tetap dilakukan secara langsung pada aplikasi oleh pengembang.
 
-**Lokasi File:** `evidence/meeting-10/ai-log.txt`
+4. ATURAN VALIDASI
+
+1. Code
+   Required, string, max:20, unique.
+
+2. Name
+   Required, string, min:3, max:120.
+
+3. Description
+   Nullable, string, max:2000.
+
+4. Fee
+   Required, integer, min:0.
+
+5. Quota
+   Required, integer, min:1, max:500.
+
+6. Start Date
+   Required, date.
+
+7. Status
+   Required, in:draft,open,closed.
+
+Catatan:
+Pada proses update, kode kursus yang sedang digunakan oleh
+data itu sendiri tetap diperbolehkan karena validasi unique
+mengabaikan ID kursus tersebut.
+
+
+5. PENGUJIAN APLIKASI
+
+Berikut skenario pengujian yang disusun:
+
+1. Kode kursus duplikat
+   Tujuan: Memastikan kode kursus tidak boleh sama.
+
+2. Nama kursus kosong
+   Tujuan: Memastikan nama wajib diisi.
+
+3. Nama kurang dari 3 karakter
+   Tujuan: Memastikan batas minimal nama.
+
+4. Deskripsi kosong
+   Tujuan: Memastikan deskripsi boleh kosong.
+
+5. Biaya negatif
+   Tujuan: Memastikan biaya minimal 0.
+
+6. Biaya bukan angka
+   Tujuan: Memastikan biaya harus berupa integer.
+
+7. Kuota 0
+   Tujuan: Memastikan kuota minimal 1.
+
+8. Kuota 501
+   Tujuan: Memastikan kuota maksimal 500.
+
+9. Kuota 1
+   Tujuan: Memastikan batas minimal diterima.
+
+10. Kuota 500
+    Tujuan: Memastikan batas maksimal diterima.
+
+11. Tanggal mulai kosong
+    Tujuan: Memastikan tanggal wajib diisi.
+
+12. Status tidak valid
+    Tujuan: Memastikan status sesuai pilihan.
+
+13. Update kode duplikat
+    Tujuan: Memastikan kode tidak menggunakan kode
+            milik kursus lain.
+
+14. Update normal
+    Tujuan: Memastikan data kursus dapat diperbarui.
+
+15. Delete kursus
+    Tujuan: Memastikan data kursus dapat dihapus.
+
+
+6. EVALUASI PENGGUNAAN AI
+
+Penggunaan AI memberikan bantuan dalam beberapa aspek:
+
+- Pemahaman kode:
+  Membantu memahami struktur dan fungsi kode Laravel.
+
+- Pemeriksaan program:
+  Membantu memeriksa kesalahan pada kode.
+
+- Validasi:
+  Membantu menyesuaikan aturan validasi data kursus.
+
+- Pengujian:
+  Membantu menyusun skenario pengujian aplikasi.
+
+- Dokumentasi:
+  Membantu menyusun dokumentasi agar lebih terstruktur.
+
+Seluruh saran AI diperiksa dan disesuaikan kembali
+dengan struktur serta kebutuhan proyek KursusKu.
+
+
+7. KESIMPULAN
+
+AI digunakan sebagai alat bantu selama proses pengembangan
+dan pengujian aplikasi KursusKu.
+
+Dengan bantuan AI, proses pemeriksaan kode, penerapan
+validasi, pengujian CRUD, dan penyusunan dokumentasi
+menjadi lebih terarah dan sistematis.
+
+Implementasi dan pengujian akhir tetap dilakukan secara
+langsung pada aplikasi oleh pengembang.
