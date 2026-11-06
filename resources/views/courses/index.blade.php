@@ -113,7 +113,9 @@
         color: #701c35;
     }
 
-    .btn-edit, .btn-delete {
+    .btn-detail,
+    .btn-edit,
+    .btn-delete {
         display: inline-block;
         border: none;
         padding: 5px 9px;
@@ -121,11 +123,17 @@
         text-decoration: none;
         font-size: 11px;
         cursor: pointer;
+        margin-bottom: 3px;
+    }
+
+    .btn-detail {
+        background: #f5e5eb;
+        color: #701c35;
     }
 
     .btn-edit {
-        background: #f5e5eb;
-        color: #701c35;
+        background: #e9edf8;
+        color: #344b87;
     }
 
     .btn-delete {
@@ -252,6 +260,12 @@
                                 </td>
 
                                 <td style="white-space:nowrap;">
+
+                                    <a href="{{ route('courses.show', $course->id) }}"
+                                       class="btn-detail">
+                                        Detail
+                                    </a>
+
                                     <a href="{{ route('courses.edit', $course->id) }}"
                                        class="btn-edit">
                                         Edit
@@ -269,6 +283,7 @@
                                             Hapus
                                         </button>
                                     </form>
+
                                 </td>
                             </tr>
 

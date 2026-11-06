@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 
 class CourseController extends Controller
 {
@@ -22,23 +23,19 @@ class CourseController extends Controller
     }
 
     // Menyimpan kursus baru
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        $validated = $request->validate([
-            'code' => 'required|string|max:20|unique:courses,code',
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'fee' => 'required|integer|min:0',
-            'quota' => 'required|integer|min:1',
-            'start_date' => 'required|date',
-            'status' => 'required|in:open,draft,closed',
-        ]);
-
-        Course::create($validated);
+        Course::create($request->validated());
 
         return redirect()
             ->route('courses.index')
             ->with('success', 'Kursus berhasil ditambahkan!');
+    }
+
+    // Menampilkan detail kursus
+    public function show(Course $course)
+    {
+        return view('courses.show', compact('course'));
     }
 
     // Menampilkan form edit kursus
@@ -48,22 +45,14 @@ class CourseController extends Controller
     }
 
     // Memperbarui data kursus
-    public function update(Request $request, Course $course)
-    {
-        $validated = $request->validate([
-            'code' => 'required|string|max:20|unique:courses,code,' . $course->id,
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'fee' => 'required|integer|min:0',
-            'quota' => 'required|integer|min:1',
-            'start_date' => 'required|date',
-            'status' => 'required|in:open,draft,closed',
-        ]);
-
-        $course->update($validated);
+    public function update(
+        UpdateCourseRequest $request,
+        Course $course
+    ) {
+        $course->update($request->validated());
 
         return redirect()
-            ->route('courses.index')
+            ->route('courses.show', $course)
             ->with('success', 'Kursus berhasil diperbarui!');
     }
 
@@ -73,7 +62,10 @@ class CourseController extends Controller
         if ($course->enrollments()->exists()) {
             return redirect()
                 ->route('courses.index')
-                ->with('error', 'Kursus tidak dapat dihapus karena sudah memiliki pendaftar.');
+                ->with(
+                    'error',
+                    'Kursus tidak dapat dihapus karena sudah memiliki pendaftar.'
+                );
         }
 
         $course->delete();

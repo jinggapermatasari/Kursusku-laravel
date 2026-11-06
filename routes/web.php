@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\CourseController;
 
+
+// ==========================================
 // HALAMAN BERANDA
+// ==========================================
+
 Route::get('/', function () {
 
     $featured = [
@@ -43,7 +47,10 @@ Route::get('/', function () {
 })->name('home');
 
 
+// ==========================================
 // HALAMAN PENDAFTARAN
+// ==========================================
+
 Route::get('/pendaftaran', [
     EnrollmentController::class,
     'create',
@@ -60,17 +67,16 @@ Route::post('/pendaftaran', [
 ])->name('enrollments.store');
 
 
-// KETERSEDIAAN KURSUS
-Route::get('/courses/{course}/availability', [
-    EnrollmentController::class,
-    'availability',
-])->whereNumber('course')->name('courses.availability');
-
-
+// ==========================================
 // PENGELOLAAN KURSUS (CRUD)
-Route::resource('courses', CourseController::class)
-    ->except(['show']);
+// ==========================================
+
+Route::resource('courses', CourseController::class);
 
 
+// ==========================================
 // HALAMAN BELAJAR
-Route::view('/belajar', 'belajar')->name('belajar');
+// ==========================================
+
+Route::view('/belajar', 'belajar')
+    ->name('belajar');
