@@ -70,7 +70,7 @@
 
                         <div class="p-3 rounded"
                              style="background: #fff5f8;">
-                            {{ $course->capacity }} peserta
+                            {{ $course->quota }} peserta
                         </div>
                     </div>
 

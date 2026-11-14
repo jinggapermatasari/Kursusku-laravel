@@ -48,7 +48,7 @@ Route::get('/', function () {
 
 
 // ==========================================
-// HALAMAN PENDAFTARAN
+// PENDAFTARAN KURSUS
 // ==========================================
 
 Route::get('/pendaftaran', [
@@ -65,6 +65,26 @@ Route::post('/pendaftaran', [
     EnrollmentController::class,
     'store',
 ])->name('enrollments.store');
+
+
+// ==========================================
+// LAPORAN ENROLLMENT - MEETING 12
+// ==========================================
+
+Route::get('/enrollments', [
+    EnrollmentController::class,
+    'index',
+])->name('enrollments.index');
+
+
+// ==========================================
+// CEK KETERSEDIAAN KURSI
+// ==========================================
+
+Route::get('/courses/{course}/availability', [
+    EnrollmentController::class,
+    'availability',
+])->name('courses.availability');
 
 
 // ==========================================

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
 class EnrollmentController extends Controller
@@ -15,18 +17,34 @@ class EnrollmentController extends Controller
      */
     public function create()
     {
-        $courses = Course::orderBy('id')->get();
+        $participants = Participant::orderBy('name')->get();
+
+        $courses = Course::orderBy('name')->get();
 
         $availability = $this->getAvailability();
 
         return view('enrollments.create', compact(
+            'participants',
             'courses',
             'availability'
         ));
     }
 
     /**
-     * Memeriksa data sebelum pendaftaran dikirim.
+     * Menampilkan laporan enrollment.
+     */
+    public function index()
+    {
+        $enrollments = Enrollment::with([
+            'participant',
+            'course',
+        ])->latest()->get();
+
+        return view('enrollments.index', compact('enrollments'));
+    }
+
+    /**
+     * Memeriksa data pendaftaran lama sebelum preview.
      */
     public function preview(Request $request)
     {
@@ -36,16 +54,14 @@ class EnrollmentController extends Controller
             'course_id' => 'required|integer|exists:courses,id',
         ]);
 
-        $course = Course::findOrFail(
-            $validated['course_id']
-        );
+        $course = Course::findOrFail($validated['course_id']);
 
         $enrolled = Enrollment::where(
             'course_id',
             $course->id
         )->count();
 
-        if ($enrolled >= $course->capacity) {
+        if ($enrolled >= (int) $course->quota) {
             throw ValidationException::withMessages([
                 'course_id' => 'Maaf, kursus ini sudah penuh.',
             ]);
@@ -58,10 +74,83 @@ class EnrollmentController extends Controller
     }
 
     /**
-     * Menyimpan pendaftaran ke database.
+     * Menyimpan pendaftaran lama maupun relasional.
      */
     public function store(Request $request)
     {
+        /*
+         * PENDAFTARAN RELASIONAL MEETING 12
+         */
+        if ($request->has('participant_id')) {
+
+            $data = $request->validate([
+                'participant_id' => [
+                    'required',
+                    'integer',
+                    'exists:participants,id',
+                ],
+
+                'course_id' => [
+                    'required',
+                    'integer',
+                    'exists:courses,id',
+                    Rule::unique('enrollments')->where(
+                        fn ($query) => $query->where(
+                            'participant_id',
+                            $request->input('participant_id')
+                        )
+                    ),
+                ],
+            ], [
+                'participant_id.required' =>
+                    'Silakan pilih peserta terlebih dahulu.',
+
+                'participant_id.exists' =>
+                    'Peserta yang dipilih tidak ditemukan.',
+
+                'course_id.required' =>
+                    'Silakan pilih kursus terlebih dahulu.',
+
+                'course_id.unique' =>
+                    'Peserta ini sudah terdaftar pada kursus tersebut.',
+            ]);
+
+            DB::transaction(function () use ($data) {
+
+                $course = Course::whereKey(
+                    $data['course_id']
+                )->lockForUpdate()->firstOrFail();
+
+                $enrolled = Enrollment::where(
+                    'course_id',
+                    $course->id
+                )->count();
+
+                if ($enrolled >= (int) $course->quota) {
+                    throw ValidationException::withMessages([
+                        'course_id' =>
+                            'Kursus sudah penuh. Silakan pilih kursus lain.',
+                    ]);
+                }
+
+                Enrollment::create([
+                    'participant_id' => $data['participant_id'],
+                    'course_id' => $data['course_id'],
+                    'status' => 'registered',
+                ]);
+            });
+
+            return redirect()
+                ->route('enrollments.index')
+                ->with(
+                    'success',
+                    'Enrollment berhasil disimpan.'
+                );
+        }
+
+        /*
+         * PENDAFTARAN LAMA KURSUSKU
+         */
         $validated = $request->validate([
             'name' => 'required|string|min:3|max:255',
             'email' => 'required|email|max:255',
@@ -79,7 +168,7 @@ class EnrollmentController extends Controller
                 $course->id
             )->count();
 
-            if ($enrolled >= $course->capacity) {
+            if ($enrolled >= (int) $course->quota) {
                 throw ValidationException::withMessages([
                     'course_id' =>
                         'Kursus sudah penuh. Silakan pilih kursus lain.',
@@ -121,7 +210,7 @@ class EnrollmentController extends Controller
                 $enrollmentCounts[$course->id] ?? 0
             );
 
-            $capacity = (int) $course->capacity;
+            $capacity = (int) $course->quota;
 
             return [
                 $course->id => [
@@ -149,7 +238,7 @@ class EnrollmentController extends Controller
             $course->id
         )->count();
 
-        $capacity = (int) $course->capacity;
+        $capacity = (int) $course->quota;
 
         $remaining = max(
             0,
