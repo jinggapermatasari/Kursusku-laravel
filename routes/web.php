@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\AuthController;
 
 
 // ==========================================
@@ -48,43 +49,88 @@ Route::get('/', function () {
 
 
 // ==========================================
+// LOGIN, REGISTER, DAN LUPA PASSWORD
+// ==========================================
+
+Route::middleware('guest')->group(function () {
+
+    // LOGIN
+    Route::get('/login', [AuthController::class, 'showLogin'])
+        ->name('login');
+
+    Route::post('/login', [AuthController::class, 'login'])
+        ->name('login.process');
+
+
+    // REGISTER
+    Route::get('/register', [AuthController::class, 'showRegister'])
+        ->name('register');
+
+    Route::post('/register', [AuthController::class, 'register'])
+        ->name('register.store');
+
+
+    // LUPA PASSWORD - GANTI PASSWORD LANGSUNG
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])
+        ->name('password.request');
+
+    Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])
+        ->name('password.email');
+
+});
+
+
+// ==========================================
+// HALAMAN SETELAH LOGIN
+// ==========================================
+
+Route::middleware('auth')->group(function () {
+
+    // DASHBOARD
+    Route::get('/dashboard', [AuthController::class, 'dashboard'])
+        ->name('dashboard');
+
+
+    // PROFIL
+    Route::get('/profil', [AuthController::class, 'profile'])
+        ->name('profile');
+
+
+    // LOGOUT
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
+
+});
+
+
+// ==========================================
 // PENDAFTARAN KURSUS
 // ==========================================
 
-Route::get('/pendaftaran', [
-    EnrollmentController::class,
-    'create',
-])->name('enrollments.create');
+Route::get('/pendaftaran', [EnrollmentController::class, 'create'])
+    ->name('enrollments.create');
 
-Route::post('/pendaftaran/preview', [
-    EnrollmentController::class,
-    'preview',
-])->name('enrollments.preview');
+Route::post('/pendaftaran/preview', [EnrollmentController::class, 'preview'])
+    ->name('enrollments.preview');
 
-Route::post('/pendaftaran', [
-    EnrollmentController::class,
-    'store',
-])->name('enrollments.store');
+Route::post('/pendaftaran', [EnrollmentController::class, 'store'])
+    ->name('enrollments.store');
 
 
 // ==========================================
-// LAPORAN ENROLLMENT - MEETING 12
+// LAPORAN ENROLLMENT
 // ==========================================
 
-Route::get('/enrollments', [
-    EnrollmentController::class,
-    'index',
-])->name('enrollments.index');
+Route::get('/enrollments', [EnrollmentController::class, 'index'])
+    ->name('enrollments.index');
 
 
 // ==========================================
 // CEK KETERSEDIAAN KURSI
 // ==========================================
 
-Route::get('/courses/{course}/availability', [
-    EnrollmentController::class,
-    'availability',
-])->name('courses.availability');
+Route::get('/courses/{course}/availability', [EnrollmentController::class, 'availability'])
+    ->name('courses.availability');
 
 
 // ==========================================
@@ -95,7 +141,7 @@ Route::resource('courses', CourseController::class);
 
 
 // ==========================================
-// HALAMAN BELAJAR
+// HALAMAN MULAI BELAJAR
 // ==========================================
 
 Route::view('/belajar', 'belajar')

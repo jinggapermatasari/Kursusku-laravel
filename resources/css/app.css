@@ -127,7 +127,7 @@ body {
 }
 
 /* =========================================
-   4. TOMBOL
+   4. TOMBOL UTAMA
 ========================================= */
 
 .btn-premium,
@@ -164,7 +164,46 @@ body {
 }
 
 /* =========================================
-   5. HERO SECTION
+   5. TOMBOL LOGIN DAN LOGOUT NAVBAR
+========================================= */
+
+.btn-login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 20px;
+    border: 1px solid white;
+    border-radius: 999px;
+    background: transparent;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.btn-login:hover {
+    background: white;
+    color: var(--wine);
+}
+
+.btn-logout {
+    padding: 11px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 999px;
+    background: transparent;
+    color: white;
+    font-weight: 700;
+    transition: 0.25s ease;
+    cursor: pointer;
+}
+
+.btn-logout:hover {
+    background: white;
+    color: var(--wine);
+}
+
+/* =========================================
+   6. HERO SECTION
 ========================================= */
 
 .hero {
@@ -273,7 +312,7 @@ body {
 }
 
 /* =========================================
-   6. HERO CARD
+   7. HERO CARD
 ========================================= */
 
 .hero-card {
@@ -383,7 +422,7 @@ body {
 }
 
 /* =========================================
-   7. SECTION UMUM
+   8. SECTION UMUM
 ========================================= */
 
 .section {
@@ -411,7 +450,7 @@ body {
 }
 
 /* =========================================
-   8. KARTU KURSUS
+   9. KARTU KURSUS
 ========================================= */
 
 .course-grid {
@@ -518,12 +557,14 @@ body {
 }
 
 /* =========================================
-   9. TENTANG KURSUSKU
+   10. ABOUT KURSUSKU
 ========================================= */
 
 .about {
-    padding: 65px 0;
-    background: var(--soft);
+    position: relative;
+    overflow: hidden;
+    padding: 85px 0;
+    background: linear-gradient(135deg, #fff7fa, #f5e5eb);
 }
 
 .about-content {
@@ -533,12 +574,158 @@ body {
     gap: 40px;
 }
 
-.about-content h2 {
-    max-width: 520px;
+.about-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    align-items: center;
+    gap: 65px;
+}
+
+.about-left h2 {
+    max-width: 550px;
+    margin-bottom: 20px;
+    color: var(--wine-dark);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.about-left h2 span {
+    color: var(--rose);
+}
+
+.about-left p {
+    max-width: 510px;
+    margin-bottom: 28px;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.about-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 13px 21px;
+    border-radius: 50px;
+    background: var(--wine);
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.about-button:hover {
+    background: var(--wine-dark);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.about-right {
+    position: relative;
+    padding: 20px;
+}
+
+.about-main-card {
+    position: relative;
+    z-index: 2;
+    padding: 35px;
+    border: 1px solid #ead5dc;
+    border-radius: 28px;
+    background: white;
+    box-shadow: 0 20px 50px rgba(89, 0, 24, 0.10);
+}
+
+.about-icon {
+    display: grid;
+    width: 55px;
+    height: 55px;
+    margin-bottom: 22px;
+    place-items: center;
+    border-radius: 17px;
+    background: var(--soft);
+    color: var(--wine);
+    font-size: 1.6rem;
+}
+
+.about-main-card h3 {
+    margin-bottom: 12px;
+    color: var(--wine-dark);
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.about-main-card p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.about-line {
+    height: 1px;
+    margin: 23px 0;
+    background: var(--line);
+}
+
+.about-points {
+    display: grid;
+    gap: 17px;
+}
+
+.about-points div {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: var(--ink);
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.about-points span {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--soft);
+    color: var(--wine);
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.about-decoration {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    color: #d9a9b9;
+    font-size: 5rem;
+    transform: rotate(15deg);
+}
+
+.about-small-card {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    margin: -20px 0 0 -15px;
+    padding: 15px 22px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(89, 0, 24, 0.09);
+    color: var(--wine);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.about-small-card strong {
+    font-size: 1.4rem;
 }
 
 /* =========================================
-   10. KEUNGGULAN KURSUSKU
+   11. KEUNGGULAN KURSUSKU
 ========================================= */
 
 #keunggulan {
@@ -580,7 +767,8 @@ body {
 }
 
 /* =========================================
-   11. FORMULIR PENDAFTARAN
+   12. FORMULIR PENDAFTARAN
+   TAMPILAN ASLI DIPERTAHANKAN
 ========================================= */
 
 .card {
@@ -619,126 +807,7 @@ body {
 }
 
 /* =========================================
-   12. FOOTER
-========================================= */
-
-.site-footer {
-    padding: 24px 0;
-    background: var(--wine-dark);
-    color: var(--white);
-    text-align: center;
-}
-
-.site-footer p {
-    margin: 0;
-    color: #f5dce5;
-}
-
-/* =========================================
-   13. SCROLL DAN POSISI NAVIGASI
-========================================= */
-
-#beranda,
-#kursus,
-#tentang,
-#keunggulan {
-    scroll-margin-top: 100px;
-}
-
-/* =========================================
-   14. RESPONSIVE TABLET
-========================================= */
-
-@media (max-width: 991px) {
-
-    .hero-content {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-card {
-        max-width: 560px;
-    }
-
-    .course-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .kursusku-navbar .navbar-collapse {
-        padding-top: 15px;
-    }
-
-    .kursusku-navbar .navbar-nav {
-        align-items: stretch !important;
-    }
-
-    .kursusku-navbar .nav-link {
-        padding: 12px 10px !important;
-    }
-
-    .kursusku-navbar .nav-link::after {
-        display: none;
-    }
-
-    .kursusku-navbar .btn-premium {
-        width: 100%;
-        margin-top: 8px;
-    }
-}
-
-/* =========================================
-   15. RESPONSIVE HANDPHONE
-========================================= */
-
-@media (max-width: 575px) {
-
-    .hero {
-        padding: 48px 0;
-    }
-
-    .hero-stats {
-        gap: 18px;
-    }
-
-    .hero h1 {
-        font-size: 2.3rem;
-    }
-
-    .hero-card {
-        padding: 22px;
-    }
-
-    .course-grid,
-    .about-content {
-        grid-template-columns: 1fr;
-    }
-
-    .section {
-        padding: 48px 0;
-    }
-
-    #keunggulan {
-        padding: 55px 0;
-    }
-
-    .card-body {
-        padding: 20px;
-    }
-
-    .brand-caption {
-        display: none;
-    }
-
-    #tentang .about-content {
-        gap: 20px;
-    }
-
-    .hero-actions .btn {
-        width: 100%;
-    }
-}
-
-/* =========================================
-   8. TABEL MANAJEMEN KURSUS - UKURAN COMPACT
+   13. TABEL MANAJEMEN KURSUS
 ========================================= */
 
 .course-page {
@@ -761,10 +830,6 @@ body {
 
 .course-header p {
     font-size: 12px !important;
-}
-
-.course-card {
-    padding: 12px !important;
 }
 
 .course-table {
@@ -800,4 +865,584 @@ body {
 .btn-delete {
     padding: 4px 7px !important;
     font-size: 10px !important;
+}
+
+/* =========================================
+   14. FOOTER
+========================================= */
+
+.site-footer {
+    padding: 24px 0;
+    background: var(--wine-dark);
+    color: var(--white);
+    text-align: center;
+}
+
+.site-footer p {
+    margin: 0;
+    color: #f5dce5;
+}
+
+/* =========================================
+   15. SCROLL DAN POSISI NAVIGASI
+========================================= */
+
+#beranda,
+#kursus,
+#tentang,
+#keunggulan {
+    scroll-margin-top: 100px;
+}
+
+/* =========================================
+   16. HALAMAN LOGIN KURSUSKU
+   SEMUA STYLE DIBATASI KE .login-page
+========================================= */
+
+.login-page {
+    min-height: 78vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 55px 20px;
+    background:
+        radial-gradient(circle at top left, #f3dce5 0, transparent 35%),
+        linear-gradient(135deg, #fffafb, #f8edf0);
+}
+
+.login-page .login-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+    border: 1px solid #ead5dc;
+    border-radius: 26px;
+    background: #ffffff;
+    box-shadow: 0 20px 60px rgba(89, 0, 24, 0.13);
+}
+
+.login-page .login-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px 40px;
+    background: linear-gradient(145deg, #590018, #800020, #a83d59);
+    color: #ffffff;
+}
+
+.login-page .login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 65px;
+    margin-bottom: 28px;
+    border-radius: 18px;
+    background: #ffffff;
+    color: #800020;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.login-page .login-intro h2 {
+    margin-bottom: 16px;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.login-page .login-intro p {
+    color: #f9eaf0;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.login-page .login-caption {
+    margin-top: 30px;
+    color: #f4dce4;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.login-page .login-form-area {
+    padding: 50px 42px;
+    background: #ffffff;
+}
+
+.login-page .login-heading {
+    margin-bottom: 30px;
+}
+
+.login-page .login-heading h2 {
+    margin-bottom: 8px;
+    color: #590018;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.login-page .login-heading p {
+    margin: 0;
+    color: #806e75;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.login-page .login-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #38232a;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.login-page .login-input {
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 0 15px;
+    border: 1px solid #ead5dc;
+    border-radius: 12px;
+    outline: none;
+    background: #fffafb;
+    color: #38232a;
+    font-size: 14px;
+    transition: 0.25s ease;
+}
+
+.login-page .login-input:focus {
+    border-color: #a83d59;
+    box-shadow: 0 0 0 4px rgba(168, 61, 89, 0.10);
+    background: #ffffff;
+}
+
+.login-page .login-field {
+    margin-bottom: 20px;
+}
+
+.login-page .login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 5px 0 25px;
+    font-size: 13px;
+}
+
+.login-page .login-remember {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #806e75;
+}
+
+.login-page .login-remember input {
+    accent-color: #800020;
+}
+
+.login-page .login-forgot {
+    color: #800020;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-page .login-forgot:hover {
+    color: #a83d59;
+    text-decoration: underline;
+}
+
+.login-page .login-submit {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #800020;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.login-page .login-submit:hover {
+    background: #590018;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(89, 0, 24, 0.18);
+}
+
+.login-page .login-note {
+    margin-top: 25px;
+    padding-top: 18px;
+    border-top: 1px solid #ead5dc;
+    color: #806e75;
+    font-size: 12px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.login-page .login-error {
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    border: 1px solid #f1c5ce;
+    border-radius: 10px;
+    background: #fff0f2;
+    color: #9d2338;
+    font-size: 13px;
+}
+
+.login-page .login-success {
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    border: 1px solid #b9dfc8;
+    border-radius: 10px;
+    background: #edf9f1;
+    color: #17653b;
+    font-size: 13px;
+}
+
+/* =========================================
+   17. RESPONSIVE TABLET
+========================================= */
+
+@media (max-width: 991px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-card {
+        max-width: 560px;
+    }
+
+    .course-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .kursusku-navbar .navbar-collapse {
+        padding-top: 15px;
+    }
+
+    .kursusku-navbar .navbar-nav {
+        align-items: stretch !important;
+    }
+
+    .kursusku-navbar .nav-link {
+        padding: 12px 10px !important;
+    }
+
+    .kursusku-navbar .nav-link::after {
+        display: none;
+    }
+
+    .kursusku-navbar .btn-premium,
+    .btn-login,
+    .btn-logout {
+        width: 100%;
+        margin-top: 8px;
+    }
+}
+
+/* =========================================
+   18. RESPONSIVE HANDPHONE
+========================================= */
+
+@media (max-width: 575px) {
+    .hero {
+        padding: 48px 0;
+    }
+
+    .hero-stats {
+        gap: 18px;
+    }
+
+    .hero h1 {
+        font-size: 2.3rem;
+    }
+
+    .hero-card {
+        padding: 22px;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 48px 0;
+    }
+
+    #keunggulan {
+        padding: 55px 0;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .brand-caption {
+        display: none;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   19. RESPONSIVE ABOUT
+========================================= */
+
+@media (max-width: 768px) {
+    .about {
+        padding: 55px 0;
+    }
+
+    .about-wrapper {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .about-main-card {
+        padding: 25px;
+    }
+
+    .about-right {
+        padding: 10px;
+    }
+}
+
+/* =========================================
+   20. RESPONSIVE LOGIN
+========================================= */
+
+@media (max-width: 700px) {
+    .login-page {
+        min-height: auto;
+        padding: 30px 15px;
+    }
+
+    .login-page .login-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .login-page .login-intro {
+        padding: 30px;
+    }
+
+    .login-page .login-intro h2 {
+        font-size: 24px;
+    }
+
+    .login-page .login-logo {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 18px;
+        font-size: 25px;
+    }
+
+    .login-page .login-form-area {
+        padding: 32px 25px;
+    }
+}
+
+/* =========================================
+   21. HALAMAN MULAI BELAJAR
+   CSS KHUSUS, TIDAK MENGUBAH HALAMAN LAIN
+========================================= */
+
+.belajar-page {
+    min-height: 80vh;
+    padding: 55px 20px;
+    background: #fffafb;
+}
+
+/* HEADER BELAJAR */
+
+.belajar-page .belajar-header {
+    max-width: 850px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.belajar-page .belajar-label {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: #f8edf0;
+    color: #800020;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.belajar-page .belajar-header h1 {
+    margin-bottom: 15px;
+    color: #590018;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 800;
+}
+
+.belajar-page .belajar-header p {
+    color: #806e75;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* DAFTAR KURSUS */
+
+.belajar-page .belajar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* KARTU KURSUS */
+
+.belajar-page .belajar-card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    border: 1px solid #ead5dc;
+    border-radius: 23px;
+    background: #ffffff;
+    box-shadow: 0 12px 35px rgba(89, 0, 24, 0.07);
+    transition: 0.3s ease;
+}
+
+.belajar-page .belajar-card:hover {
+    transform: translateY(-7px);
+    border-color: #a83d59;
+    box-shadow: 0 20px 40px rgba(89, 0, 24, 0.13);
+}
+
+/* ICON KURSUS */
+
+.belajar-page .belajar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 22px;
+    border-radius: 18px;
+    background: #f8edf0;
+    color: #800020;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+/* INFORMASI KURSUS */
+
+.belajar-page .belajar-code {
+    margin-bottom: 9px;
+    color: #a83d59;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.belajar-page .belajar-card h3 {
+    margin-bottom: 12px;
+    color: #590018;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.belajar-page .belajar-card p {
+    flex: 1;
+    margin-bottom: 22px;
+    color: #806e75;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* MATERI KURSUS */
+
+.belajar-page .belajar-info {
+    margin-bottom: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ead5dc;
+    color: #806e75;
+    font-size: 13px;
+}
+
+/* TOMBOL DAFTAR */
+
+.belajar-page .belajar-button {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: #800020;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.belajar-page .belajar-button:hover {
+    background: #590018;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* BAGIAN BAWAH */
+
+.belajar-page .belajar-footer {
+    max-width: 800px;
+    margin: 45px auto 0;
+    padding: 25px;
+    border: 1px solid #ead5dc;
+    border-radius: 18px;
+    background: #f8edf0;
+    color: #590018;
+    text-align: center;
+}
+
+.belajar-page .belajar-footer h3 {
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.belajar-page .belajar-footer p {
+    margin: 0;
+    color: #806e75;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* RESPONSIVE MULAI BELAJAR */
+
+@media (max-width: 850px) {
+    .belajar-page .belajar-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .belajar-page {
+        padding: 35px 15px;
+    }
+
+    .belajar-page .belajar-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .belajar-page .belajar-card {
+        padding: 24px;
+    }
 }

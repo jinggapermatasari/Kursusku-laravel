@@ -24,39 +24,31 @@
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
 
-                <!-- BERANDA -->
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('home') && !request()->has('section') ? 'active' : '' }}"
+                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
                        href="{{ route('home') }}">
                         Beranda
                     </a>
                 </li>
 
-                <!-- KURSUS -->
                 <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ route('home') }}#kursus">
+                    <a class="nav-link" href="{{ route('home') }}#kursus">
                         Kursus
                     </a>
                 </li>
 
-                <!-- TENTANG -->
                 <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ route('home') }}#tentang">
+                    <a class="nav-link" href="{{ route('home') }}#tentang">
                         Tentang
                     </a>
                 </li>
 
-                <!-- KEUNGGULAN -->
                 <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ route('home') }}#keunggulan">
+                    <a class="nav-link" href="{{ route('home') }}#keunggulan">
                         Keunggulan
                     </a>
                 </li>
 
-                <!-- PENDAFTARAN -->
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('enrollments.*') ? 'active' : '' }}"
                        href="{{ route('enrollments.create') }}">
@@ -64,13 +56,39 @@
                     </a>
                 </li>
 
-                <!-- TOMBOL MULAI BELAJAR -->
+                <!-- MULAI BELAJAR -->
                 <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
                     <a class="btn-premium"
-                       href="{{ route('enrollments.create') }}">
+                       href="{{ route('belajar') }}">
                         Mulai Belajar ↗
                     </a>
                 </li>
+
+                <!-- LOGIN / PROFIL -->
+                @guest
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <a class="btn-login"
+                           href="{{ route('login') }}">
+                            Login
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <a class="btn-login"
+                           href="{{ route('profile') }}">
+                            Profil
+                        </a>
+                    </li>
+
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn-logout">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                @endguest
 
             </ul>
         </div>
